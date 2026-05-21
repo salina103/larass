@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     Route::get('/', [MainController::class, 'index'])->name('admin.index');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/tags', TagController::class);
-    Route::resource('posts', PostController::class);
+    Route::resource('posts', AdminPostController::class);
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -36,6 +37,5 @@ Route::get('/login', [UserController::class, 'loginForm'])->name('login.create')
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/article', [PostController::class, 'show'])->name('posts.single');
