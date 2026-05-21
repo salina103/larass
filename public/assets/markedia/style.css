@@ -1674,3 +1674,11 @@ hr.invis3 {
     -o-border-radius: 50%;
     border-radius: 50%
 }
+
+.min-h-85 {
+    min-height: 85px;
+}
+
+.list-group-item-action:hover h5 {
+    color: #0a58ca; 
+}

@@ -13,71 +13,44 @@
     @endif
 
     <div class="widget">
-        <h2 class="widget-title">Recent Posts</h2>
+        <h2 class="widget-title">Popular Posts</h2>
         <div class="blog-list-widget">
             <div class="list-group">
-                <a href="marketing-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="w-100 justify-content-between">
-                        <img src="{{ asset('assets/markedia/upload/small_07.jpg') }}" alt="small_07" class="img-fluid float-left">
-                        <h5 class="mb-1">5 Beautiful buildings you need to before dying</h5>
-                        <small>12 Jan, 2016</small>
-                    </div>
-                </a>
+                @foreach ($popular_posts as $post)
+                <a href="{{ route('posts.single', ['slug' => $post->slug]) }}"
+                    class="list-group-item list-group-item-action d-flex align-items-center p-2 min-h-85">
 
-                <a href="marketing-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="w-100 justify-content-between">
-                        <img src="{{ asset('assets/markedia/upload/small_08.jpg') }}" alt="small_08" class="img-fluid float-left">
-                        <h5 class="mb-1">Let's make an introduction for creative life</h5>
-                        <small>11 Jan, 2016</small>
-                    </div>
-                </a>
+                    <div class="w-100 d-flex align-items-center">
+                        <img src="{{ $post->getImage() }}"
+                            alt="{{ $post->title }}"
+                            class="rounded me-3 object-fit-cover flex-shrink-0 img-fluid w-100 h-100">
 
-                <a href="marketing-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="w-100 last-item justify-content-between">
-                        <img src="{{ asset('assets/markedia/upload/small_09.jpg') }}" alt="small_09" class="img-fluid float-left">
-                        <h5 class="mb-1">Did you see the most beautiful sea in the world?</h5>
-                        <small>07 Jan, 2016</small>
+                        <div class="flex-grow-1">
+                            <h5 class="mb-2 font-weight-bold fs-6 lh-sm">
+                                {{ Str::limit($post->title, 50) }}
+                            </h5>
+
+                            <span class="text-sm-start">{{ $post->getPostDate() }}</span>
+                            <span>| <i class="fa fa-eye"></i> {{ $post->views }}</span>
+                        </div>
                     </div>
                 </a>
+                @endforeach
             </div>
-        </div><!-- end blog-list -->
-    </div><!-- end widget -->
-
-    <div class="widget">
-        <h2 class="widget-title">Advertising</h2>
-        <div class="banner-spot clearfix">
-            <div class="banner-img">
-                <img src="{{ asset('assets/markedia/upload/banner_03.jpg') }}" alt="banner_03" class="img-fluid">
-            </div><!-- end banner-img -->
-        </div><!-- end banner -->
-    </div><!-- end widget -->
-
-    <div class="widget">
-        <h2 class="widget-title">Instagram Feed</h2>
-        <div class="instagram-wrapper clearfix">
-            <a class="" href="#"><img src="{{ asset('assets/markedia/upload/small_09.jpg') }}" alt="small_09" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_01.jpg') }}" alt="small_01" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_02.jpg') }}" alt="small_02" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_03.jpg') }}" alt="small_03" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_04.jpg') }}" alt="small_04" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_05.jpg') }}" alt="small_05" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_06.jpg') }}" alt="small_06" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_07.jpg') }}" alt="small_07" class="img-fluid"></a>
-            <a href="#"><img src="{{ asset('assets/markedia/upload/small_08.jpg') }}" alt="small_08" class="img-fluid"></a>
-        </div><!-- end Instagram wrapper -->
-    </div><!-- end widget -->
+        </div>
+    </div>
 
     <div class="widget">
         <h2 class="widget-title">Popular Categories</h2>
         <div class="link-widget">
             <ul>
-                <li><a href="#">Marketing <span>(21)</span></a></li>
-                <li><a href="#">SEO Service <span>(15)</span></a></li>
-                <li><a href="#">Digital Agency <span>(31)</span></a></li>
-                <li><a href="#">Make Money <span>(22)</span></a></li>
-                <li><a href="#">Blogging <span>(66)</span></a></li>
-                <li><a href="#">Entertaintment <span>(11)</span></a></li>
-                <li><a href="#">Video Tuts <span>(87)</span></a></li>
+                @foreach ($cats as $cat)
+                    <li>
+                        <a href="{{ route('categories.single', ['slug' => $cat->slug]) }}">
+                            {{ $cat->title }} <span>({{ $cat->posts_count }})</span>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </div><!-- end link-widget -->
     </div><!-- end widget -->

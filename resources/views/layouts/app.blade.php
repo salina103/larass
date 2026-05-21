@@ -52,7 +52,7 @@
 <body>
 
     <div id="wrapper">
-        @include('layouts.components.header')
+        @include('layouts.components.navbar')
 
         @yield('hero')
 
