@@ -1,4 +1,4 @@
-@extends('admin.layouts.layout')
+ф@extends('admin.layouts.layout')
 
 @section('content')
 <div class="content-wrapper">
@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
+        
     </section>
 
     <!-- Main content -->
@@ -51,14 +52,18 @@
                                 <a href="{{ route('categories.index') }}" class="btn btn-default">Отмена</a>
                             </div>
                         </form>
+
                     </div>
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
+
             </div>
             <!-- /.row -->
+
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+
 </div>
 @endsection

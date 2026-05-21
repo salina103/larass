@@ -19,36 +19,51 @@
         </div><!-- /.container-fluid -->
     </section>
 
+
     <!-- Main content -->
+    
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Создание категорий</h3>
+                            <h3 class="card-title">Создание категории</h3>
                         </div>
                         <!-- /.card-header -->
-                         <form role="form" method="action="{{ route('categories.store') }}>
-                            @carf
+
+                        <form role="form" method="post" action="{{ route('categories.store') }}">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"
-                                            class="form-control" @error('title') is-invalid @enderror" id="title"
-                                            placeholder="Название">
+                                        class="form-control @error('title') is-invalid @enderror"
+                                        id="title"
+                                        placeholder="Название"
+                                        value="{{ old('title') }}">
+                                    @error('title')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Сохранить</button>
-                        </div>
-                        </form>    
-                        </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                                <a href="{{ route('categories.index') }}" class="btn btn-default">Отмена</a>
+                            </div>
+                        </form>
+                    </div>
                     <!-- /.card -->
                 </div>
+                <!-- /.col -->
+
             </div>
-        </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
     </section>
+
     <!-- /.content -->
+</div>
 @endsection

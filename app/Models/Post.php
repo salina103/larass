@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
@@ -13,15 +13,11 @@ class Post extends Model
 
     protected $fillable = ['title', 'slug'];
 
-    public function tags()
+    public function posts()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Post::class);
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public function sluggable(): array
     {
