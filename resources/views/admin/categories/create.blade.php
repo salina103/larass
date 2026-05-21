@@ -19,9 +19,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
-
     <!-- Main content -->
-    
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -31,7 +29,6 @@
                             <h3 class="card-title">Создание категории</h3>
                         </div>
                         <!-- /.card-header -->
-
                         <form role="form" method="post" action="{{ route('categories.store') }}">
                             @csrf
                             <div class="card-body">
@@ -48,7 +45,6 @@
                                 </div>
                             </div>
                             <!-- /.card-body -->
-
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Сохранить</button>
                                 <a href="{{ route('categories.index') }}" class="btn btn-default">Отмена</a>
@@ -58,12 +54,10 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- /.content -->
 </div>
 @endsection
